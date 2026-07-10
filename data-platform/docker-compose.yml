@@ -107,14 +107,16 @@ services:
   # ---------------------------------------------------------------------------
 
   jupyter:
-    image: jupyter/datascience-notebook:latest
+    build: ./jupyter
     container_name: jupyter_fia
     ports:
       - "8888:8888"
     volumes:
-      - ./DataPipeline:/home/jovyan/work
+      - ./DataPipeline:/home/jovyan/work/DataPipeline
+      - ./Model:/home/jovyan/work/Model
     environment:
       - JUPYTER_ENABLE_LAB=yes
+      - JUPYTER_TOKEN=${JUPYTER_TOKEN}
     # Altere para a mesma rede que o seu Postgres e Airflow usam:
     depends_on:
       - postgres
