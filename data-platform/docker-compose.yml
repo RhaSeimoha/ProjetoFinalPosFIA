@@ -122,7 +122,7 @@ services:
       - ./Model:/home/jovyan/work/Model
     environment:
       - JUPYTER_ENABLE_LAB=yes
-      - JUPYTER_TOKEN=${JUPYTER_TOKEN}
+      - JUPYTER_TOKEN=test
     # Altere para a mesma rede que o seu Postgres e Airflow usam:
     depends_on:
       - postgres
