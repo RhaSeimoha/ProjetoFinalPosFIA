@@ -151,8 +151,8 @@ Os notebooks podem ser executados pelo ambiente descrito em [Jupyter](../jupyter
 Na pasta `data-platform`:
 
 ```bash
-python3 -m venv Model/.venv
-Model/.venv/bin/python -m pip install -r Model/requirements.txt
+python -m venv Model\.venv
+Model\.venv\Scripts\pip.exe install -r Model\requirements.txt
 ```
 
 O PostgreSQL deve estar disponível e a ABT `application_abt` deve ter sido criada pelo [pipeline de dados](../DataPipeline/README.md).
@@ -161,15 +161,15 @@ O PostgreSQL deve estar disponível e a ABT `application_abt` deve ter sido cria
 
 ```bash
 cd data-platform
-PYTHONPATH=DataPipeline Model/.venv/bin/python Model/train.py
+$env:PYTHONPATH="DataPipeline"
+Model\.venv\bin\python Model\train.py 
 ```
 
 Treinamento reduzido para validação rápida:
 
 ```bash
-PYTHONPATH=DataPipeline Model/.venv/bin/python Model/train.py \
-  --sample-size 5000 \
-  --output /tmp/lightgbm_abt_smoke.pkl
+$env:PYTHONPATH="DataPipeline"
+Model\.venv\Scripts\python.exe Model\train.py --sample-size 5000 --output Model\.venv\tmp\lightgbm_abt_smoke.pkl
 ```
 
 O treinamento oficial também é a última etapa da DAG `pipeline_orchestration`.
@@ -191,7 +191,7 @@ O parâmetro `--sample-size` limita a consulta e existe para smoke tests. Ele n�
 
 ```bash
 cd data-platform
-Model/.venv/bin/python Model/predict.py --sk-id 100002
+Model\.venv\Scripts\python.exe Model\predict.py --sk-id 100002
 ```
 
 O comando consulta o cliente em `application_abt`, carrega `artifacts/lightgbm_abt.pkl` e apresenta score, threshold e decisão de classe.
