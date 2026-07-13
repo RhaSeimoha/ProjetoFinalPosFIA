@@ -46,6 +46,6 @@ if __name__ == "__main__":
         run_postgres_to_csv_export(
             conn_id="postgres_data_db",
             source_table=table,
-            output_dir_path="../airflow/data/csv"  # Apenas a pasta de destino
+            output_dir_path=".\Dados\csv"  # Apenas a pasta de destino
         )
     
