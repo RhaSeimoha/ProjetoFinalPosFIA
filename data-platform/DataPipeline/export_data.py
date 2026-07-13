@@ -35,8 +35,17 @@ def run_postgres_to_csv_export(conn_id: str, source_table: str, output_dir_path:
         conn.close()
 
 if __name__ == "__main__":
-    run_postgres_to_csv_export(
-        conn_id="postgres_data_db",
-        source_table="application_abt",  # O script vai usar esse nome para o arquivo
-        output_dir_path="./data-platform/data"           # Apenas a pasta de destino
-    )
+    tables_to_export = [
+        "application_clean",
+        "previous_application_clean",
+        "bureau_clean",
+        "installments_clean",
+        "application_abt"
+    ]
+    for table in tables_to_export:
+        run_postgres_to_csv_export(
+            conn_id="postgres_data_db",
+            source_table=table,
+            output_dir_path="../airflow/data/csv"  # Apenas a pasta de destino
+        )
+    
